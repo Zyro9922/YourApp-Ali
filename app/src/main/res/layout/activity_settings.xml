@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Settings">
+
+        <TextView
+            android:id="@+id/showInStatusBar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Show in status bar"
+            android:textColor="#000000"
+            android:textSize="35sp" />
+
+        <Button
+            android:id="@+id/statusBarButton"
+            android:text="Add"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+
+
+
+</LinearLayout>
