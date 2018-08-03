@@ -1,6 +1,8 @@
 package com.example.divyanshukumar.yourapp;
 
 
+import android.app.NotificationManager;
+import android.app.PendingIntent;
 import android.app.ProgressDialog;
 import android.app.SearchManager;
 import android.content.ContentValues;
@@ -11,6 +13,7 @@ import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.AsyncTask;
+import android.support.v4.app.NotificationCompat;
 import android.support.v4.view.MenuItemCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -35,6 +38,9 @@ import java.util.List;
 
 public class MainActivity extends AppCompatActivity{
 
+    NotificationCompat.Builder notification;
+    private static final int uniqueID = 45612;
+
 
     Context thisContext = this;
 
@@ -53,6 +59,26 @@ public class MainActivity extends AppCompatActivity{
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        notification = new NotificationCompat.Builder(this);
+        notification.setAutoCancel(true);
+
+        notification.setOngoing(true);
+        notification.setSmallIcon(R.drawable.ic_search);
+        notification.setTicker("This is the ticker");
+        notification.setWhen(System.currentTimeMillis());
+        notification.setContentTitle("Search Your App");
+        notification.setContentText("Click here to search for an app. DAMN Easy right! :)");
+
+        Intent intent = new Intent(this, MainActivity.class);
+        PendingIntent pendingIntent = PendingIntent.getActivity(this, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT);
+        notification.setContentIntent(pendingIntent);
+
+        //Builds notification and issues it
+        NotificationManager nm = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
+        nm.notify(uniqueID, notification.build());
+
+
 
 //        DbHelper = new AppDbHelper(this);
 /**
